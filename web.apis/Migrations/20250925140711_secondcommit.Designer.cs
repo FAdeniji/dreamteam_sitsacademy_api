@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using web.apis;
@@ -11,9 +12,10 @@ using web.apis;
 namespace web.apis.Migrations
 {
     [DbContext(typeof(DbConn))]
-    partial class DbConnModelSnapshot : ModelSnapshot
+    [Migration("20250925140711_secondcommit")]
+    partial class secondcommit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +114,7 @@ namespace web.apis.Migrations
                         {
                             Id = 1,
                             Code = "new_registration",
-                            DateAdded = new DateTime(2025, 9, 25, 14, 11, 46, 119, DateTimeKind.Utc).AddTicks(1709),
+                            DateAdded = new DateTime(2025, 9, 25, 14, 7, 10, 686, DateTimeKind.Utc).AddTicks(410),
                             IsActive = true,
                             Message = "<p>Welcome to Basic API <b>{user}</b> —a platform where creativity meets innovation</p>",
                             Subject = "Basic API: New User",
@@ -219,59 +221,6 @@ namespace web.apis.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logs");
-                });
-
-            modelBuilder.Entity("data.models.Module", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AddedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Link")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("ProductCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("ShortName")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<string>("SoftwareActivationKey")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("data.models.Notification", b =>
@@ -627,8 +576,8 @@ namespace web.apis.Migrations
                         {
                             Id = "bac4fac1-c546-41de-aebc-a14da689a0099",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "86645425-10c6-4084-b54d-906da492ebdb",
-                            DateAdded = new DateTime(2025, 9, 25, 14, 11, 46, 117, DateTimeKind.Utc).AddTicks(6580),
+                            ConcurrencyStamp = "fea74245-d3aa-4953-95c0-9cc90822f923",
+                            DateAdded = new DateTime(2025, 9, 25, 14, 7, 10, 684, DateTimeKind.Utc).AddTicks(6713),
                             Email = "superadmin@prus.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -637,9 +586,9 @@ namespace web.apis.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@SYSTEM.DOM",
                             NormalizedUserName = "SUPERADMIN@SYSTEM.DOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMQZ0Ov/BBefv9sMPLsgDlyY/7vhJo8uCXw8XtaLKgZjZISdNCLgNzdi4IRKGNQ2Tw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOv8AmnWJqt0+x8z1GYL5ynMnJ1YrbGcHBn5I5Ea/XzPpF4PAlOCVVFsnXs82q7TUg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6f4ec4a2-823f-4a98-8bc4-82826dc4b8f8",
+                            SecurityStamp = "8e0543da-9d29-4d29-85a6-fcf437059527",
                             TwoFactorEnabled = false,
                             UserName = "SYSTEMAAA",
                             UserRoleEnum = 1

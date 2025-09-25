@@ -192,6 +192,9 @@ builder.Services.AddTransient<IEmailTemplateRepository, EmailTemplateRepository>
 builder.Services.AddTransient<ILogRepository, LogRepository>();
 builder.Services.AddTransient<IDashboardRepository, DashboardRepository>();
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+builder.Services.AddTransient<ICourseRepository, CourseRepository>();
+builder.Services.AddTransient<IModuleRepository, ModuleRepository>();
+builder.Services.AddTransient<IQuestionRepository, QuestionRepository>();
 
 builder.Services.Scan(scan => scan
     .FromAssemblyOf<Program>() // Or any type within your assembly
@@ -202,7 +205,10 @@ builder.Services.Scan(scan => scan
             typeof(IEmailTemplateRepository),
             typeof(ILogRepository),
             typeof(IDashboardRepository),
-            typeof(IUsersRepository)
+            typeof(IUsersRepository),
+            typeof(ICourseRepository),
+            typeof(IModuleRepository),
+            typeof(IQuestionRepository)
         )
     )
     .AsImplementedInterfaces()

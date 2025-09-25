@@ -138,7 +138,7 @@ namespace web.apis
         public DbSet<Log> Logs { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Module> Modules { get; set; }
-        public DbSet<Question> Questions { get; set; }
+        public DbSet<Course> Questions { get; set; }
         public DbSet<UserAnswer> UserAnswers { get; set; }
         public DbSet<EntityPulse> EntityPulses { get; set; }
     }

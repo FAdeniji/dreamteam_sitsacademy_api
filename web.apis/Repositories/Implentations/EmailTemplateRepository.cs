@@ -83,7 +83,7 @@ namespace web.apis
             {
                 return _dbConn.EmailTemplates
                     .AsNoTracking()
-                    //.Where(e => e.IsActive)
+                    .Where(e => e.IsActive)
                     .AsEnumerable();
             }
             catch (Exception ex)

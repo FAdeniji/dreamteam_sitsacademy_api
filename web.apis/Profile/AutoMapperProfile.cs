@@ -52,15 +52,15 @@ namespace web.apis.Profile
             #endregion
 
             #region Module
-            CreateMap<ModuleBindingModel, Module>().ReverseMap();
-            CreateMap<ModuleUpdateBindingModel, Module>().ReverseMap();
-            CreateMap<Module, ModuleViewModel>().ReverseMap();
+            CreateMap<ModuleBindingModel, Course>().ReverseMap();
+            CreateMap<ModuleUpdateBindingModel, Course>().ReverseMap();
+            CreateMap<Course, ModuleViewModel>().ReverseMap();
             #endregion
 
             #region Question
-            CreateMap<QuestionBindingModel, Question>().ReverseMap();
-            CreateMap<QuestionUpdateBindingModel, Question>().ReverseMap();
-            CreateMap<Question, QuestionViewModel>().ReverseMap();
+            CreateMap<QuestionBindingModel, Course>().ReverseMap();
+            CreateMap<QuestionUpdateBindingModel, Course>().ReverseMap();
+            CreateMap<Course, QuestionViewModel>().ReverseMap();
             #endregion
 
             #region UserAnswer

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using web.apis;
@@ -11,9 +12,10 @@ using web.apis;
 namespace web.apis.Migrations
 {
     [DbContext(typeof(DbConn))]
-    partial class DbConnModelSnapshot : ModelSnapshot
+    [Migration("20250925141146_secondcommit1")]
+    partial class secondcommit1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

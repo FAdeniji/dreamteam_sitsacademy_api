@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 using common.data;
 
 namespace data.models
 {
-	public class Notification : Entity
+    public class Notification : Entity
     {
         public Notification(string recipientname, string recipientemail, string recipientphone, string sendername, string senderemail, string subject, string message, string userId)
         {

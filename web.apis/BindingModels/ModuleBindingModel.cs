@@ -19,6 +19,10 @@ namespace web.apis
         [Required]
         [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string ProductCode { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
+        public string Link { get; set; }
     }
 
     public class ModuleUpdateBindingModel
@@ -41,5 +45,9 @@ namespace web.apis
         [Required]
         [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string ProductCode { get; set; }
+
+        [Required]
+        [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
+        public string Link { get; set; }
     }
 }
