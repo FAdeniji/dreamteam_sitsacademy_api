@@ -26,7 +26,7 @@ namespace web.apis.Controllers
         }
 
         [HttpPost, Route("add"), AllowAnonymous]
-        public async Task<IActionResult> add([FromBody] EmailTemplateBindingModel model)
+        public async Task<IActionResult> add([FromBody] ModuleBindingModel model)
         {
             try
             {
@@ -34,6 +34,8 @@ namespace web.apis.Controllers
                     return BadRequest(new ResponseModel($"{CustomMessages.Invalid()}", false, null));
 
                 var userId = GetUserId();
+                if (string.IsNullOrWhiteSpace(userId))
+                    userId = "System";
 
                 var module = _mapper.Map<Module>(model);
                 var addedEmailTemplate = await _moduleRepository.Add(module, userId);
@@ -57,6 +59,8 @@ namespace web.apis.Controllers
             try
             {
                 var userId = GetUserId();
+                if (string.IsNullOrWhiteSpace(userId))
+                    userId = "System";
 
                 var emailTemplates = _moduleRepository.Get();
 
