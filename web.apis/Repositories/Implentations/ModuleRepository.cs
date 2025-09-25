@@ -59,6 +59,24 @@ namespace web.apis
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Module> GetByProductCode(string productcode)
+        {
+            try
+            {
+                return _dbConn.Modules
+                    .AsNoTracking()
+                    .Where(e => e.IsActive
+                        && e.ProductCode == productcode)
+                    .AsEnumerable();
+            }
+            catch (Exception ex)
+            {
+                var extraInfo = $"An error occurred while fetching modules";
+                _logger.Error(extraInfo, ex.Message);
+                throw new Exception(extraInfo);
+            }
+        }
+
         public async Task<Module> GetById(int id)
         {
             try

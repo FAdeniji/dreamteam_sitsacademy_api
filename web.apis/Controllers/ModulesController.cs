@@ -73,5 +73,29 @@ namespace web.apis.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpPost, Route("getbyproductcode"), AllowAnonymous]
+        public ActionResult GetbyProductCode([FromBody] string productCode)
+        {
+            try
+            {
+                if(string.IsNullOrWhiteSpace(productCode))
+                    return BadRequest(new ResponseModel($"{CustomMessages.StringMessage("Course Product Code cannot be null")}", false, null));
+
+                var userId = GetUserId();
+                if (string.IsNullOrWhiteSpace(userId))
+                    userId = "System";
+
+                var emailTemplates = _moduleRepository.GetByProductCode(productCode);
+
+                var fvms = _mapper.Map<List<ModuleViewModel>>(emailTemplates);
+
+                return Ok(new ResponseModel($"{CustomMessages.Fetched($"{fvms.Count}", "Question(s)")}", false, fvms));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
     }
 }
