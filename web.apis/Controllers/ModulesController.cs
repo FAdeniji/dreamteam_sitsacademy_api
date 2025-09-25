@@ -86,11 +86,13 @@ namespace web.apis.Controllers
                 if (string.IsNullOrWhiteSpace(userId))
                     userId = "System";
 
-                var emailTemplates = _moduleRepository.GetByProductCode(productCode);
+                var modules = _moduleRepository.GetByProductCode(productCode);
 
-                var fvms = _mapper.Map<List<ModuleViewModel>>(emailTemplates);
+                var lstModules = modules.ToList();
 
-                return Ok(new ResponseModel($"{CustomMessages.Fetched($"{fvms.Count}", "Question(s)")}", false, fvms));
+                // var fvms = _mapper.Map<List<ModuleViewModel>>(lstModules);
+
+                return Ok(new ResponseModel($"{CustomMessages.Fetched($"{lstModules.Count}", "Question(s)")}", false, lstModules));
             }
             catch (Exception ex)
             {
