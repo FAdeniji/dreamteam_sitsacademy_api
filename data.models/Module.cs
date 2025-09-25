@@ -12,7 +12,7 @@ namespace data.models
         }
 
 
-        public Module(string softwareactivationkey, string shortname, string fullname, string productcode, string link)
+        public Module(string softwareactivationkey, string shortname, string fullname, string productcode, string? link)
         {
             SoftwareActivationKey = softwareactivationkey;
             ShortName = shortname;
@@ -42,6 +42,6 @@ namespace data.models
 
         [Required]
         [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
-        public string Link { get; set; }
+        public string? Link { get; set; }
     }
 }

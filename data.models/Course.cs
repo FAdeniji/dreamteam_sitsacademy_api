@@ -11,9 +11,9 @@ namespace data.models
             DateAdded = DateTime.UtcNow;
         }
 
-        public Course(string softwareactivationkey, string fullname, string productcode)
+        public Course(string shortname, string fullname, string productcode)
         {
-            SoftwareActivationKey = softwareactivationkey;
+            ShortName = shortname;
             Fullname = fullname;
             ProductCode = productcode;
 
@@ -23,7 +23,7 @@ namespace data.models
 
         [Required]
         [StringLength(20, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
-        public string SoftwareActivationKey { get; set; }
+        public string ShortName { get; set; }
 
         [Required]
         [StringLength(500, ErrorMessage = "The {0} value cannot exceed {1} characters.")]

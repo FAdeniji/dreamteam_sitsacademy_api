@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using web.apis;
@@ -11,9 +12,10 @@ using web.apis;
 namespace web.apis.Migrations
 {
     [DbContext(typeof(DbConn))]
-    partial class DbConnModelSnapshot : ModelSnapshot
+    [Migration("20250925142019_secondcommit2")]
+    partial class secondcommit2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +114,7 @@ namespace web.apis.Migrations
                         {
                             Id = 1,
                             Code = "new_registration",
-                            DateAdded = new DateTime(2025, 9, 25, 14, 22, 22, 703, DateTimeKind.Utc).AddTicks(9885),
+                            DateAdded = new DateTime(2025, 9, 25, 14, 20, 19, 243, DateTimeKind.Utc).AddTicks(1927),
                             IsActive = true,
                             Message = "<p>Welcome to Basic API <b>{user}</b> —a platform where creativity meets innovation</p>",
                             Subject = "Basic API: New User",
@@ -627,8 +629,8 @@ namespace web.apis.Migrations
                         {
                             Id = "bac4fac1-c546-41de-aebc-a14da689a0099",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1e30a67-b7d0-4f74-bb0b-f78bf407129e",
-                            DateAdded = new DateTime(2025, 9, 25, 14, 22, 22, 702, DateTimeKind.Utc).AddTicks(4507),
+                            ConcurrencyStamp = "7f62dc3f-4850-4903-b42b-843847761bbc",
+                            DateAdded = new DateTime(2025, 9, 25, 14, 20, 19, 241, DateTimeKind.Utc).AddTicks(7776),
                             Email = "superadmin@prus.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -637,9 +639,9 @@ namespace web.apis.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@SYSTEM.DOM",
                             NormalizedUserName = "SUPERADMIN@SYSTEM.DOM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMl4jHJKbwgEWkq175Ax5ssiIP4OO3mmukQ6IWjxB5dViFD/Sa9nfDPQDtSrFaM69w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM1fwlElxonjPh1YWBE3zRI827nXJGdS3FMVm3wMEs18bnsEgQiNJ9AtqUECkwEWdg==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "db2aaa99-89df-4c26-8ebb-323e4dd21b00",
+                            SecurityStamp = "0e8cec06-2c78-4dfd-ba3b-3ea0f4fe240a",
                             TwoFactorEnabled = false,
                             UserName = "SYSTEMAAA",
                             UserRoleEnum = 1
