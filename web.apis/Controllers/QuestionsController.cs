@@ -10,7 +10,7 @@ namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
     [EnableCors("sitsacademy")]
-    [Authorize(Roles = CustomPolicies.Everyone)]
+    //[Authorize(Roles = CustomPolicies.Everyone)]
     public class QuestionsController : BaseController
     {
         private readonly IQuestionRepository _questionRepository;

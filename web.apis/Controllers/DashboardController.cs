@@ -10,7 +10,7 @@ namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
     [EnableCors("sitsacademy")]
-    [Authorize(Roles = CustomPolicies.Everyone)]
+    //[Authorize(Roles = CustomPolicies.Everyone)]
     public class DashboardController : BaseController
     {
         private readonly IDashboardRepository _dashboardRepository;
@@ -27,7 +27,7 @@ namespace web.apis.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet, Route("get")]
+        [HttpGet, Route("get"), AllowAnonymous]
         public async Task<ActionResult> Get()
         {
             try

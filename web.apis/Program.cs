@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add Cors
 #region Add Cors
 builder.Services.AddCors(options => {
-    options.AddPolicy("Procent",
+    options.AddPolicy("sitsacademy",
         builder => builder
             .AllowAnyOrigin()
             .AllowAnyHeader()
