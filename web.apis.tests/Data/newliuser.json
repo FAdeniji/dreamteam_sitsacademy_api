@@ -1,0 +1,11 @@
+{
+  "organisationName": "Folas Uni",
+  "firstName": "AdefolarinFolasUni",
+  "lastName": "AdenijiFolasUni",
+  "emailAddress": "adefolarin.adeniji+FolasUniLI@gmail.com",
+  "mobileNumber": "00000000000",
+  "password": "Password01@",
+  "confirmPassword": "Password01@",
+  "userRoleEnum": "LearningInstitution",
+  "address": "FolasUni Address"
+}
