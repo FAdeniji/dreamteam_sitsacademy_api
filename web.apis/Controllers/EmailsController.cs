@@ -8,7 +8,7 @@ using web.apis.Models;
 namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
-    [EnableCors("Procent")]
+    [EnableCors("sitsacademy")]
     [Authorize(Roles = CustomPolicies.Everyone)]
     public class EmailsController : BaseController
     {

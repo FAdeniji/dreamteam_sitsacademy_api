@@ -23,8 +23,6 @@ namespace web.apis.tests.TestControllers
         private Mock<ILogger<AccountsController>> _loggerMock;
         private Mock<IMediator> _mediatorMock;
         private Mock<IEmailRepository> _emailRepositoryMock;
-        private Mock<ISubscriptionRepository> _subscriptionRepositoryMock;
-        private Mock<IS3UploadFileRepository> _s3UploadFileServiceMock;
         private AccountsController _controller;
 
 
@@ -38,8 +36,6 @@ namespace web.apis.tests.TestControllers
             _loggerMock = new Mock<ILogger<AccountsController>>();
             _mediatorMock = new Mock<IMediator>();
             _emailRepositoryMock = new Mock<IEmailRepository>();
-            _subscriptionRepositoryMock = new Mock<ISubscriptionRepository>();
-            _s3UploadFileServiceMock = new Mock<IS3UploadFileRepository>();
 
             _controller = new AccountsController(
                 _mapperMock.Object,
@@ -48,9 +44,7 @@ namespace web.apis.tests.TestControllers
                 _roleManagerMock.Object,
                 _loggerMock.Object,
                 _mediatorMock.Object,
-                _emailRepositoryMock.Object,
-                _subscriptionRepositoryMock.Object,               
-                _s3UploadFileServiceMock.Object
+                _emailRepositoryMock.Object
                 );
         }
 

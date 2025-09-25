@@ -23,7 +23,7 @@ using web.apis.ViewModels;
 namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
-    [EnableCors("Procent")]
+    [EnableCors("sitsacademy")]
     public class AccountsController : BaseController
     {
         private readonly IMapper _mapper;
@@ -33,13 +33,9 @@ namespace web.apis.Controllers
         private readonly ILogger _logger;
         private readonly ISender _mediator;
         private readonly IEmailRepository _emailRepository;
-        private readonly ISubscriptionRepository _subscriptionRepository;
-        private readonly IS3UploadFileRepository _s3UploadFileService;
         public AccountsController(IMapper mapper, UserManager<ApplicationUser> userManager,
             IConfiguration configuration, RoleManager<IdentityRole> roleManager,
-            ILogger<AccountsController> logger, IMediator mediator, IEmailRepository emailRepository,            
-            ISubscriptionRepository subscriptionRepository, 
-            IS3UploadFileRepository s3UploadFileService)
+            ILogger<AccountsController> logger, IMediator mediator, IEmailRepository emailRepository)
         {
             _mapper = mapper;
             _configuration = configuration;
@@ -48,8 +44,6 @@ namespace web.apis.Controllers
             _logger = logger;
             _mediator = mediator;
             _emailRepository = emailRepository;
-            _subscriptionRepository = subscriptionRepository;
-            _s3UploadFileService = s3UploadFileService;
         }
 
         [Authorize(Roles = CustomPolicies.Everyone)]

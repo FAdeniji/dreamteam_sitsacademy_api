@@ -41,36 +41,12 @@ namespace web.apis.Profile
             CreateMap<ApplicationUser, InvestorViewModel2>().ReverseMap(); //reverse so the both direction
             #endregion
 
-            #region Subscription
-            CreateMap<SubscriptionBindingModel, Subscription>().ReverseMap();
-            CreateMap<SubscriptionUpdateBindingModel, Subscription>().ReverseMap();
-            CreateMap<Subscription, SubscriptionViewModel>().ReverseMap();
-            CreateMap<UserSubscription, UserSubscriptionViewModel>().ReverseMap();
-            #endregion
-
-            #region Document
-            CreateMap<DocumentBindingModel, Document>().ReverseMap();
-            CreateMap<DocumentUpdateBindingModel, Document>().ReverseMap();
-            CreateMap<Document, DocumentViewModel>().ReverseMap();
-            #endregion
-
             #region Email Template
             CreateMap<EmailTemplateBindingModel, EmailTemplate>().ReverseMap();
             CreateMap<EmailTemplateUpdateBindingModel, EmailTemplate>().ReverseMap();
             CreateMap<EmailTemplate, EmailTemplateViewModel>().ReverseMap();
             #endregion
 
-            #region Promo Code
-            CreateMap<PromoCodeBindingModel, PromoCode>().ReverseMap();
-            CreateMap<PromoCodeUpdateBindingModel, PromoCode>().ReverseMap();
-            CreateMap<PromoCode, PromoCodeViewModel>().ReverseMap();
-            #endregion
-
-            #region Campaign
-            CreateMap<CampaignBindingModel, Campaign>().ReverseMap();
-            CreateMap<CampaignUpdateBindingModel, Campaign>().ReverseMap();
-            CreateMap<Campaign, CampaignViewModel>().ReverseMap();
-            #endregion
         }
     }
 }

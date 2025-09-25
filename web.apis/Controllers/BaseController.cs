@@ -7,7 +7,7 @@ namespace web.apis.Controllers
     /// <summary>
     /// BaseController
     /// </summary>
-    [EnableCors("Hydreate")]
+    [EnableCors("sitsacademy")]
     public class BaseController : Controller
     {
         protected string GetUserId()

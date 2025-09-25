@@ -208,13 +208,7 @@ builder.Services.Scan(scan => scan
             typeof(IEmailTemplateRepository),
             typeof(ILogRepository),
             typeof(IDashboardRepository),
-            typeof(IUsersRepository),
-            typeof(ITransactionRepository),
-            typeof(ISubscriptionRepository),
-            typeof(IDocumentRepository),
-            typeof(IS3UploadFileRepository),
-            typeof(IPromoCodeRepository),
-            typeof(ICampaignRepository)
+            typeof(IUsersRepository)
         )
     )
     .AsImplementedInterfaces()
@@ -253,7 +247,7 @@ builder.Services.AddSingleton(Log.Logger);
 
 var app = builder.Build();
 
-app.UseCors("Hydreate");
+app.UseCors("sitsacademy");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())

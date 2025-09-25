@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
-    [EnableCors("Procent")]
+    [EnableCors("sitsacademy")]
     [Authorize(Roles = CustomPolicies.Everyone)]
     public class UsersController : BaseController
     {

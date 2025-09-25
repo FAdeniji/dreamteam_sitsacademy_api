@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 namespace web.apis.Controllers
 {
     [Route("api/v1/[controller]")]
-    [EnableCors("Procent")]
+    [EnableCors("sitsacademy")]
     [Authorize(Roles = CustomPolicies.Everyone)]
     public class DashboardController : BaseController
     {
@@ -17,17 +17,14 @@ namespace web.apis.Controllers
         private readonly IMapper _mapper;
         private readonly ILogger<DashboardController> _logger;
         private UserManager<ApplicationUser> _userManager;
-        private readonly ISubscriptionRepository _subscriptionRepository;
 
         public DashboardController(IDashboardRepository dashboardRepository, IMapper mapper,
-            ILogger<DashboardController> logger, UserManager<ApplicationUser> userManager,
-            ISubscriptionRepository subscriptionRepository)
+            ILogger<DashboardController> logger, UserManager<ApplicationUser> userManager)
         {
             _dashboardRepository = dashboardRepository;
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
-            _subscriptionRepository = subscriptionRepository;
         }
 
         [HttpGet, Route("get")]

@@ -9,7 +9,7 @@ using web.apis.Controllers;
 using web.apis.Models;
 
 [Route("api/v1/[controller]")]
-[EnableCors("Procent")]
+[EnableCors("sitsacademy")]
 [Authorize(Roles = CustomPolicies.Everyone)]
 public class EmailTemplatesController : BaseController
 {

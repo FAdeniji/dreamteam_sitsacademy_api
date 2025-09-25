@@ -52,8 +52,6 @@ namespace web.apis
         public DateTime DateAdded { get; set; }
 
         public int? LearningInstitutionId { get; set; }
-
-        public List<DocumentViewModel> Documents { get; set; }
     }
 }
 
