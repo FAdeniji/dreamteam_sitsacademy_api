@@ -125,7 +125,6 @@ namespace web.apis.Controllers
 
                 // check if user exists
                 var user = await _userManager.Users
-                    .Include(u => u.Documents)
                     .Where(u => u.Email == model.Email)
                     .FirstOrDefaultAsync();
 
@@ -140,8 +139,6 @@ namespace web.apis.Controllers
                     return BadRequest(new ResponseModel("Invalid user credentials", true, JsonConvert.SerializeObject(model)));
 
                 var token = GenerateJWT(user);
-
-                user.Documents = user.Documents?.Where(u => u.TypeId == DocumentType.ProfilePicture).OrderByDescending(d => d.Id).Take(1).ToList();
 
                 var userViewModel = _mapper.Map<UserViewModel>(user);
 
@@ -202,7 +199,7 @@ namespace web.apis.Controllers
                 }
                 else
                 {
-                    model.UserRoleEnum = UserRoleEnum.CommunityMember.GetDisplayName();
+                    model.UserRoleEnum = UserRoleEnum.User.GetDisplayName();
                 }
 
                 var user = _mapper.Map<ApplicationUser>(model);
@@ -270,7 +267,7 @@ namespace web.apis.Controllers
 
                     //     break;
                     default:
-                        user.UserRoleEnum = UserRoleEnum.CommunityMember;
+                        user.UserRoleEnum = UserRoleEnum.User;
                         break;
                 }
 
@@ -284,25 +281,6 @@ namespace web.apis.Controllers
                 var roleToUser = await _userManager.AddToRoleAsync(user, roleName);
                 if (roleToUser.Succeeded)
                     response.Message = $"User account was successfully created for {user.FirstName}";
-
-                // Add to Funnel and log reminder
-                var newUserQuery = new NewUserQuery(new UserDetails()
-                {
-                    EmailAddress = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    MobileNumber = user.PhoneNumber,
-                    UserId = user.Id,
-                    SubscriptionId = model.SubscriptionId,
-                    LearningInstitutionId = model.LearningInstitutionId.HasValue ? model.LearningInstitutionId.Value : 0,
-                    CourseId = model.CourseId.HasValue ? model.CourseId.Value : 0,
-                }, userType == user.UserRoleEnum, loggedInUserId);
-                var newUser = await _mediator.Send(newUserQuery);
-                var userMessage = string.Empty;
-
-                if (newUser == null)
-                    //return BadRequest(new ResponseModel("Error occurred while creating a staff", true, null));
-                    userMessage = "Error occurred while creating a staff";
 
                 var userViewModel = _mapper.Map<UserViewModel>(user);
 
@@ -329,7 +307,7 @@ namespace web.apis.Controllers
                         break;
                 }
 
-                return Ok(new ResponseModel($"User account was successfully created. {userMessage}", false, userViewModel));
+                return Ok(new ResponseModel($"User account was successfully created.", false, userViewModel));
             }
             catch (Exception ex)
             {
@@ -466,14 +444,8 @@ namespace web.apis.Controllers
                 if (user.Email != model.EmailAddress)
                     user.Email = model.EmailAddress;
 
-                if (user.PhoneNumber != model.MobileNumber)
-                    user.PhoneNumber = model.MobileNumber;
-
-                if (user.Description != model.Description)
-                    user.Description = model.Description;
-
-                if (user.OrganisationName != model.OrganisationName)
-                    user.OrganisationName = model.OrganisationName;
+                if (user.Department != model.Department)
+                    user.Department = model.Department;
 
                 await _userManager.UpdateAsync(user);
 
@@ -564,7 +536,7 @@ namespace web.apis.Controllers
             {
                 new Claim("userId", user.Id),
                 new Claim("userName", user.UserName),
-                new Claim("organization", user.OrganisationName),
+                new Claim("department", user.Department),
                 new Claim("role", user.UserRoleEnum.ToString()),
             };
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -30,17 +29,12 @@ namespace web.apis.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
-                    OrganisationName = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     FirstName = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     LastName = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
                     UserRoleEnum = table.Column<int>(type: "integer", nullable: true),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    GroupID = table.Column<int>(type: "integer", nullable: true),
-                    LearningInstitutionId = table.Column<int>(type: "integer", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -48,6 +42,7 @@ namespace web.apis.Migrations
                     PasswordHash = table.Column<string>(type: "text", nullable: true),
                     SecurityStamp = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -60,18 +55,14 @@ namespace web.apis.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Campaigns",
+                name: "Courses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    ConversionGoal = table.Column<List<string>>(type: "text[]", nullable: true),
-                    UtmParameters = table.Column<string>(type: "text", nullable: true),
-                    TriggerEvents = table.Column<List<string>>(type: "text[]", nullable: true),
-                    AudienceSegment = table.Column<List<string>>(type: "text[]", nullable: true),
-                    CreatorUserId = table.Column<string>(type: "text", nullable: false),
+                    SoftwareActivationKey = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    Fullname = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    ProductCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     AddedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -80,7 +71,7 @@ namespace web.apis.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Campaigns", x => x.Id);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,6 +142,27 @@ namespace web.apis.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Modules",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SoftwareActivationKey = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    ShortName = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    FullName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    ProductCode = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    AddedBy = table.Column<string>(type: "text", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modules", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Notifications",
                 columns: table => new
                 {
@@ -180,17 +192,13 @@ namespace web.apis.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Subscriptions",
+                name: "Questions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Topic = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    Description = table.Column<string>(type: "character varying(10000)", maxLength: 10000, nullable: false),
-                    Price = table.Column<double>(type: "double precision", nullable: false),
-                    NoOfIdeas = table.Column<int>(type: "integer", nullable: false),
-                    ExpiryInMonths = table.Column<int>(type: "integer", nullable: false),
-                    ColourCode = table.Column<string>(type: "text", nullable: false),
+                    ModuleId = table.Column<int>(type: "integer", maxLength: 20, nullable: false),
+                    Text = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     AddedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -199,7 +207,27 @@ namespace web.apis.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Subscriptions", x => x.Id);
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAnswers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    QuestionId = table.Column<int>(type: "integer", maxLength: 500, nullable: false),
+                    Text = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    AddedBy = table.Column<string>(type: "text", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAnswers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -308,155 +336,6 @@ namespace web.apis.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Documents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    AssetId = table.Column<int>(type: "integer", nullable: false),
-                    TypeId = table.Column<int>(type: "integer", nullable: false),
-                    FileName = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    ActualFileName = table.Column<string>(type: "character varying(5000)", maxLength: 5000, nullable: false),
-                    Url = table.Column<string>(type: "character varying(5000)", maxLength: 5000, nullable: true),
-                    Description = table.Column<string>(type: "character varying(5000)", maxLength: 5000, nullable: true),
-                    Path = table.Column<string>(type: "character varying(5000)", maxLength: 5000, nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: true),
-                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AddedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Documents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Documents_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PromoCodes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Code = table.Column<string>(type: "text", nullable: false),
-                    DisplayName = table.Column<string>(type: "text", nullable: false),
-                    Value = table.Column<int>(type: "integer", nullable: false),
-                    Applicability = table.Column<string>(type: "text", nullable: true),
-                    MinCartValue = table.Column<int>(type: "integer", nullable: false),
-                    EligibleForAllUsers = table.Column<bool>(type: "boolean", nullable: false),
-                    EligibleForNewUsers = table.Column<bool>(type: "boolean", nullable: false),
-                    UsageLimit = table.Column<int>(type: "integer", nullable: false),
-                    CreatorUserId = table.Column<string>(type: "text", nullable: false),
-                    CampaignId = table.Column<int>(type: "integer", nullable: true),
-                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AddedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PromoCodes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PromoCodes_Campaigns_CampaignId",
-                        column: x => x.CampaignId,
-                        principalTable: "Campaigns",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transactions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TransationRef = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Amount = table.Column<decimal>(type: "numeric", nullable: false),
-                    Naration = table.Column<string>(type: "text", nullable: false),
-                    CustomerName = table.Column<string>(type: "text", nullable: false),
-                    CustomerEmail = table.Column<string>(type: "text", nullable: false),
-                    SubscriptionId = table.Column<int>(type: "integer", nullable: true),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    ProductType = table.Column<int>(type: "integer", nullable: false),
-                    PaymentRequestAsJson = table.Column<string>(type: "text", nullable: false),
-                    PaymentResponseAsJson = table.Column<string>(type: "text", nullable: false),
-                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AddedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Transactions_Subscriptions_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "Subscriptions",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserSubscriptions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SubscriptionId = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    ExpiryDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Price = table.Column<double>(type: "double precision", nullable: false),
-                    TransactionRef = table.Column<string>(type: "text", nullable: true),
-                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AddedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserSubscriptions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserSubscriptions_Subscriptions_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "Subscriptions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserPromoCode",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    PromoCodeId = table.Column<int>(type: "integer", nullable: false),
-                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    AddedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserPromoCode", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserPromoCode_PromoCodes_PromoCodeId",
-                        column: x => x.PromoCodeId,
-                        principalTable: "PromoCodes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
@@ -464,26 +343,13 @@ namespace web.apis.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateAdded", "Description", "Email", "EmailConfirmed", "FirstName", "GroupID", "IsActive", "LastName", "LearningInstitutionId", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "OrganisationName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "UserRoleEnum" },
-                values: new object[] { "bac4fac1-c546-41de-aebc-a14da689a0099", 0, "e6548047-c1dd-4500-ab05-88f75393e3fc", new DateTime(2025, 7, 3, 8, 27, 35, 696, DateTimeKind.Utc).AddTicks(3620), null, "superadmin@prus.com", true, "System", null, true, "User", null, false, null, "SUPERADMIN@SYSTEM.DOM", "SUPERADMIN@SYSTEM.DOM", "Process R Us", "AQAAAAEAACcQAAAAEKpgbSl4a4QpwikBLWFD/O20E3tHJvpGLAw6QIflQmLAWcGZd9qnxoKNtTaCyg2BZw==", "00000000000", true, "2ad0d606-ff30-4da8-b7db-e88807eea4b4", false, "SYSTEMAAA", 1 });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateAdded", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "UserRoleEnum" },
+                values: new object[] { "bac4fac1-c546-41de-aebc-a14da689a0099", 0, "c7076378-e533-495f-aad8-012362b03b34", new DateTime(2025, 9, 25, 13, 17, 40, 198, DateTimeKind.Utc).AddTicks(6362), "superadmin@prus.com", true, "System", true, "User", false, null, "SUPERADMIN@SYSTEM.DOM", "SUPERADMIN@SYSTEM.DOM", "AQAAAAEAACcQAAAAEFqJDXaVtiGyhS7NvhwzuVLDY+JcIvugLj7GncMD5a1JnltjKmdc5PWS6AkYjwr+jw==", null, true, "322a8a8d-5ebf-475a-b160-4fc66c5cb256", false, "SYSTEMAAA", 1 });
 
             migrationBuilder.InsertData(
                 table: "EmailTemplates",
                 columns: new[] { "Id", "AddedBy", "Code", "DateAdded", "IsActive", "Message", "Subject", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, null, "new_registration", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9340), true, "<p>Welcome to Basic API <b>{user}</b> —a platform where creativity meets innovation</p>", "Basic API: New User", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
-
-            migrationBuilder.InsertData(
-                table: "Subscriptions",
-                columns: new[] { "Id", "AddedBy", "ColourCode", "DateAdded", "Description", "ExpiryInMonths", "IsActive", "NoOfIdeas", "Price", "Topic", "UpdatedAt", "UpdatedBy" },
-                values: new object[,]
-                {
-                    { 1, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Free Subscription", 1, true, 5, 0.0, "Free Subscription", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 2, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Education Subscription", 1, true, 15, 15.0, "Education Subscription", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 3, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Investors Subscription", 1, true, 20, 20.0, "Investors Subscription", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 4, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Corporate Subscription", 1, true, 20, 25.0, "Corporate Subscription", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 5, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Business Analyst Subscription", 1, true, 0, 30.0, "Business Analyst Subscription", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 6, "FAdeniji", "#008FD2", new DateTime(2025, 7, 3, 8, 27, 35, 697, DateTimeKind.Utc).AddTicks(9360), "Value Added Service", 1, true, 5, 10.0, "Value Added Service", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
-                });
+                values: new object[] { 1, null, "new_registration", new DateTime(2025, 9, 25, 13, 17, 40, 200, DateTimeKind.Utc).AddTicks(6246), true, "<p>Welcome to Basic API <b>{user}</b> —a platform where creativity meets innovation</p>", "Basic API: New User", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -526,32 +392,6 @@ namespace web.apis.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Documents_ApplicationUserId",
-                table: "Documents",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PromoCodes_CampaignId",
-                table: "PromoCodes",
-                column: "CampaignId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transactions_SubscriptionId",
-                table: "Transactions",
-                column: "SubscriptionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserPromoCode_PromoCodeId",
-                table: "UserPromoCode",
-                column: "PromoCodeId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserSubscriptions_SubscriptionId",
-                table: "UserSubscriptions",
-                column: "SubscriptionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -572,7 +412,7 @@ namespace web.apis.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Documents");
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "EmailTemplates");
@@ -584,31 +424,22 @@ namespace web.apis.Migrations
                 name: "Logs");
 
             migrationBuilder.DropTable(
+                name: "Modules");
+
+            migrationBuilder.DropTable(
                 name: "Notifications");
 
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "UserPromoCode");
-
-            migrationBuilder.DropTable(
-                name: "UserSubscriptions");
+                name: "UserAnswers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "PromoCodes");
-
-            migrationBuilder.DropTable(
-                name: "Subscriptions");
-
-            migrationBuilder.DropTable(
-                name: "Campaigns");
         }
     }
 }

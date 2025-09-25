@@ -186,18 +186,12 @@ builder.Services.AddAuthorization(config =>
 #endregion
 
 #region "Register Interfaces"
-// builder.Services.AddTransient<IEmailRepository, EmailRepository>();
-// builder.Services.AddTransient<INotificationRepository, NotificationRepository>();
-// builder.Services.AddTransient<IEmailTemplateRepository, EmailTemplateRepository>();
-// builder.Services.AddTransient<ILogRepository, LogRepository>();
-// builder.Services.AddTransient<IDashboardRepository, DashboardRepository>();
-// builder.Services.AddTransient<IUsersRepository, UsersRepository>();
-// builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
-// builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
-// builder.Services.AddTransient<IDocumentRepository, DocumentRepository>();
-// builder.Services.AddTransient<IS3UploadFileRepository, S3UploadFileRepository>();
-// builder.Services.AddTransient<IPromoCodeRepository, PromoCodeRepository>();
-// builder.Services.AddTransient<ICampaignRepository, CampaignRepository>();
+builder.Services.AddTransient<IEmailRepository, EmailRepository>();
+builder.Services.AddTransient<INotificationRepository, NotificationRepository>();
+builder.Services.AddTransient<IEmailTemplateRepository, EmailTemplateRepository>();
+builder.Services.AddTransient<ILogRepository, LogRepository>();
+builder.Services.AddTransient<IDashboardRepository, DashboardRepository>();
+builder.Services.AddTransient<IUsersRepository, UsersRepository>();
 
 builder.Services.Scan(scan => scan
     .FromAssemblyOf<Program>() // Or any type within your assembly

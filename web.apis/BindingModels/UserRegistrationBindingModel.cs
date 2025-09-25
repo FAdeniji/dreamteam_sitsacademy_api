@@ -6,7 +6,7 @@ namespace web.apis
     public class UserRegistrationBindingModel
 	{
         [DataType(DataType.Text)]
-        public string OrganisationName { get; set; }
+        public string Department { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -33,21 +33,6 @@ namespace web.apis
         public string ConfirmPassword { get; set; }
 
         public string? UserRoleEnum { get; set; }
-
-        public string? InvestorType { get; set; }
-
-        public string? WebsiteUrl { get; set; }
-
-        [Required]
-        public int SubscriptionId { get; set; }
-
-        public string? Description { get; set; }
-
-        public string? Address { get; set; }
-
-        public int? LearningInstitutionId { get; set; }
-
-        public int? CourseId { get; set; }
     }
 
     public class UpdateUserBingingModel {
@@ -60,8 +45,6 @@ namespace web.apis
 
     public class UserRegistrationUpdateBindingModel
     {
-        public string? OrganisationName { get; set; }
-
         [Required]
         public string FirstName { get; set; }
 
@@ -72,21 +55,9 @@ namespace web.apis
         public string EmailAddress { get; set; }
 
         [Required]
-        public string MobileNumber { get; set; }
-
-        public bool IsInvestor { get; set; }
-
-        [Required]
         public string UserId { get; set; }
 
-        public string? InvestorType { get; set; }
-
-        public string? WebsiteUrl { get; set; }
-
-        [Required]
-        public int SubscriptionId { get; set; }
-
-        public string? Description { get; set; }
+        public string? Department { get; set; }
     }
 }
 

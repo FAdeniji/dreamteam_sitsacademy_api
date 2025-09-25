@@ -58,10 +58,7 @@ namespace web.apis.tests.TestControllers
                 Password = "Test@1234",
                 FirstName = "John",
                 LastName = "Doe",
-                UserRoleEnum = UserRoleEnum.CommunityMember.ToString(),
-                SubscriptionId = 1,
-                LearningInstitutionId = 1,
-                CourseId = 1,
+                UserRoleEnum = UserRoleEnum.User.ToString()
             };
 
             var appUser = new ApplicationUser { Email = model.EmailAddress };
@@ -117,9 +114,7 @@ namespace web.apis.tests.TestControllers
                 ConfirmPassword = "Test@1234",
                 FirstName = "John",
                 LastName = "Doe",
-                UserRoleEnum = UserRoleEnum.CommunityMember.ToString(),
-                MobileNumber = "00000000000",
-                LearningInstitutionId = 0
+                UserRoleEnum = UserRoleEnum.User.ToString(),
             };
 
             var identityErrors = new List<IdentityError>

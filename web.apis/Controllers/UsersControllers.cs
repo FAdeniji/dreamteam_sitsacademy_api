@@ -137,8 +137,6 @@ namespace web.apis.Controllers
                 if (user == null)
                     return NotFound(new ResponseModel($"{CustomMessages.NotFound("User")}", false, null));
 
-                user.Documents = user.Documents?.Where(u => u.TypeId == DocumentType.ProfilePicture).OrderByDescending(d => d.Id).Take(1).ToList();
-
                 var applicationUserViewModel = _mapper.Map<UserViewModel>(user);
 
                 user.LastName = Security.AnonymiseData(user.LastName);

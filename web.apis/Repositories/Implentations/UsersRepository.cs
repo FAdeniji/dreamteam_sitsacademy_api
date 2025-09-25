@@ -66,7 +66,7 @@ public class UsersRepository : IUsersRepository
     {
         try
         {
-            var query = from u in _dbConn.Users.Include(u => u.Documents)
+            var query = from u in _dbConn.Users
                         select u;
 
             return query
@@ -74,14 +74,12 @@ public class UsersRepository : IUsersRepository
                 .Select(x => new ApplicationUserViewModel()
                 {
                     Id = x.Id,
-                    OrganisationName = x.OrganisationName,
+                    Department = x.Department,
                     FirstName = x.FirstName,
                     LastName = Security.AnonymiseData(x.LastName),
                     EmailAddress = Security.Anonymise(x.Email),
-                    MobileNumber = Security.AnonymiseNumber(x.PhoneNumber.Substring(0, 2)),
                     UserRoleEnum = x.UserRoleEnum.ToString(),
                     IsActive = x.IsActive,
-                    Website = x.Website,
                     DateAdded = x.DateAdded
                 })
                 .AsEnumerable();
@@ -114,7 +112,6 @@ public class UsersRepository : IUsersRepository
         try
         {
             return await _dbConn.Users
-                .Include(u => u.Documents)
                 .AsNoTracking()
                 .Where(u => u.Id == userId)
                 .FirstOrDefaultAsync();

@@ -79,17 +79,6 @@ namespace web.apis
 		{
 			base.OnConfiguring(optionsBuilder);
         }
-        private void SeedSubscriptions(ModelBuilder builder)
-        {
-            builder.Entity<Subscription>().HasData(
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 5, Id = 1, Topic = "Free Subscription", Description = "Free Subscription", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 0 },
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 15, Id = 2, Topic = "Education Subscription", Description = "Education Subscription", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 15 },
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 20, Id = 3, Topic = "Investors Subscription", Description = "Investors Subscription", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 20 },
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 20, Id = 4, Topic = "Corporate Subscription", Description = "Corporate Subscription", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 25 },
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 0, Id = 5, Topic = "Business Analyst Subscription", Description = "Business Analyst Subscription", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 30 },
-                new Subscription() { ColourCode = "#008FD2", NoOfIdeas = 5, Id = 6, Topic = "Value Added Service", Description = "Value Added Service", AddedBy = "FAdeniji", DateAdded = DateTime.UtcNow, ExpiryInMonths = 1, IsActive = true, Price = 10 }
-                );
-        }
 
         private void SeedSystemAsAdmin(ModelBuilder builder)
         {
@@ -105,8 +94,7 @@ namespace web.apis
                 NormalizedEmail = "SUPERADMIN@SYSTEM.DOM",
                 UserName = "SYSTEMAAA",
                 UserRoleEnum = UserRoleEnum.Administrator,
-                PhoneNumber = "00000000000",
-                OrganisationName = "Process R Us"
+                Department = "ISD"
             };
 
             PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
@@ -135,8 +123,7 @@ namespace web.apis
             this.SeedSystemAsAdmin(builder);
             this.SeedRoles(builder);
             this.SeedUserRoles(builder);
-            this.SeedEmailTemplates(builder);
-            this.SeedSubscriptions(builder);            
+            this.SeedEmailTemplates(builder);           
 
             base.OnModelCreating(builder);
         }
@@ -149,13 +136,11 @@ namespace web.apis
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
         public DbSet<Log> Logs { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<UserSubscription> UserSubscriptions { get; set; }
-        public DbSet<Subscription> Subscriptions { get; set; }
-        public DbSet<Document> Documents { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<UserAnswer> UserAnswers { get; set; }
         public DbSet<EntityPulse> EntityPulses { get; set; }
-        public DbSet<PromoCode> PromoCodes { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
     }
 }
 

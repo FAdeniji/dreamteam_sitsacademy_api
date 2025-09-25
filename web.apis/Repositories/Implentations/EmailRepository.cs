@@ -2,11 +2,8 @@
 using System.Net.Mail;
 using ILogger = Serilog.ILogger;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
-namespace web.apis.Repositories.Implentations
+namespace web.apis
 {
     public class EmailRepository : IEmailRepository
     {

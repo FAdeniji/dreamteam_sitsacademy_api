@@ -37,9 +37,6 @@ namespace web.apis
                     .AsNoTracking()
                     .AsEnumerable();
 
-                if (learningInstitutionId.HasValue)
-                    query = query.Where(u => u.LearningInstitutionId == learningInstitutionId);
-
                 return query;
             }
             catch (Exception ex)

@@ -21,7 +21,7 @@ namespace web.apis.Profile
               .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.EmailAddress))
               .ForMember(dest => dest.NormalizedUserName, opts => opts.MapFrom(src => src.EmailAddress.ToUpper()))
               // .ForMember(dest => dest.UserRoleEnum, opts => opts.MapFrom(src => UserRoleEnum.IdeaOwner))
-              .ForMember(dest => dest.OrganisationName, opts => opts.MapFrom(src => src.OrganisationName));
+              .ForMember(dest => dest.Department, opts => opts.MapFrom(src => src.Department));
 
             CreateMap<ApplicationUser, UserViewModel>()
               .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
@@ -29,8 +29,7 @@ namespace web.apis.Profile
               .ForMember(dest => dest.LastName, opts => opts.MapFrom(src => src.LastName))
               .ForMember(dest => dest.UserName, opts => opts.MapFrom(src => src.UserName))
               .ForMember(dest => dest.EmailAddress, opts => opts.MapFrom(src => src.Email))
-              .ForMember(dest => dest.PhoneNumber, opts => opts.MapFrom(src => src.PhoneNumber))
-              .ForMember(dest => dest.OrganisationName, opts => opts.MapFrom(src => src.OrganisationName))
+              .ForMember(dest => dest.Department, opts => opts.MapFrom(src => src.Department))
               .ForMember(dest => dest.UserRole, opts => opts.MapFrom(src => src.UserRoleEnum.GetDisplayName()))
               .ForMember(dest => dest.IsActive, opts => opts.MapFrom(src => src.IsActive));
 
@@ -38,13 +37,36 @@ namespace web.apis.Profile
 
             #region Application User View Model
             CreateMap<ApplicationUser, ApplicationUserViewModel>().ReverseMap(); //reverse so the both direction
-            CreateMap<ApplicationUser, InvestorViewModel2>().ReverseMap(); //reverse so the both direction
             #endregion
 
             #region Email Template
             CreateMap<EmailTemplateBindingModel, EmailTemplate>().ReverseMap();
             CreateMap<EmailTemplateUpdateBindingModel, EmailTemplate>().ReverseMap();
             CreateMap<EmailTemplate, EmailTemplateViewModel>().ReverseMap();
+            #endregion
+
+            #region course
+            CreateMap<CourseBindingModel, Course>().ReverseMap();
+            CreateMap<CourseUpdateBindingModel, Course>().ReverseMap();
+            CreateMap<Course, CourseViewModel>().ReverseMap();
+            #endregion
+
+            #region Module
+            CreateMap<ModuleBindingModel, Module>().ReverseMap();
+            CreateMap<ModuleUpdateBindingModel, Module>().ReverseMap();
+            CreateMap<Module, ModuleViewModel>().ReverseMap();
+            #endregion
+
+            #region Question
+            CreateMap<QuestionBindingModel, Question>().ReverseMap();
+            CreateMap<QuestionUpdateBindingModel, Question>().ReverseMap();
+            CreateMap<Question, QuestionViewModel>().ReverseMap();
+            #endregion
+
+            #region UserAnswer
+            CreateMap<UserAnswerBindingModel, UserAnswer>().ReverseMap();
+            CreateMap<UserAnswerUpdateBindingModel, UserAnswer>().ReverseMap();
+            CreateMap<UserAnswer, UserAnswerViewModel>().ReverseMap();
             #endregion
 
         }

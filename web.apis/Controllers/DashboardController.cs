@@ -35,8 +35,6 @@ namespace web.apis.Controllers
                 var userId = GetUserId();
                 var user = await _userManager.FindByIdAsync(userId);
 
-                var totalUsers = _dashboardRepository.TotalUsers(user.LearningInstitutionId);               
-                
                 return Ok(new ResponseModel($"{CustomMessages.Fetched("", "Dashboard Data")}", false, null));
             }
             catch (Exception ex)
