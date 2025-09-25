@@ -26,7 +26,7 @@ namespace web.apis.Controllers
         }
 
 
-        [HttpPost, Route("add")]
+        [HttpPost, Route("add"), AllowAnonymous]
         public async Task<IActionResult> add([FromBody] EmailTemplateBindingModel model)
         {
             try
@@ -52,7 +52,7 @@ namespace web.apis.Controllers
         }
 
         //[Authorize(Roles = CustomPolicies.Administrator)]
-        [HttpGet, Route("get")]
+        [HttpGet, Route("get"), AllowAnonymous]
         public ActionResult Get()
         {
             try
